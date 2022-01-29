@@ -28,4 +28,15 @@ replace_name('toyouta', 'toyota')
 replace_name('vokswagen', 'volkswagen')
 replace_name('vw', 'volkswagen')
 
-print(cars.columns)
+plt.figure(figsize=(20, 8))
+
+plt.subplot(2, 1, 1)
+plt.title('Car price distribution')
+sns.displot(cars.price)
+plt.show()
+
+plt.subplot(2, 1, 2)
+plt.title('Car Price Spreed')
+sns.boxplot(y=cars.price)
+
+plt.show()
