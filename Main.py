@@ -70,11 +70,21 @@ sns.boxplot(x=cars.symboling, y=cars.price, palette=("cubehelix"))
 
 # plt.show()
 
+plt.figure(figsize=(20,8))
+plt.subplot(1,2,1)
+plt.title('Engine Type Histogram')
+sns.countplot(cars.enginetype, palette=("Blues_d"))
 
+plt.subplot(1,2,2)
+plt.title('Engine Type vs Price')
+sns.boxplot(x=cars.enginetype, y=cars.price, palette=("PuBuGn"))
 
+# plt.show()
 
-
-
+df = pd.DataFrame(cars.groupby(['enginetype'])['price'].mean().sort_values(ascending = False))
+df.plot.bar(figsize=(8,6))
+plt.title('Engine Type vs Average Price')
+plt.show()
 
 
 
