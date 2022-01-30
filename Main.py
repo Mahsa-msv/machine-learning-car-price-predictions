@@ -28,15 +28,64 @@ replace_name('toyouta', 'toyota')
 replace_name('vokswagen', 'volkswagen')
 replace_name('vw', 'volkswagen')
 
-plt.figure(figsize=(20, 8))
+plt.figure(figsize=(25, 6))
 
-plt.subplot(2, 1, 1)
+plt.subplot(1,2, 1)
 plt.title('Car price distribution')
-sns.displot(cars.price)
-plt.show()
+sns.distplot(cars.price)
+# plt.show()
 
-plt.subplot(2, 1, 2)
+plt.subplot(1, 2, 2)
 plt.title('Car Price Spreed')
 sns.boxplot(y=cars.price)
 
 plt.show()
+
+
+plt.figure(figsize=(25, 6))
+plt.subplot(1, 3, 1)
+plt1 = cars.CompanyName.value_counts().plot(kind='bar')
+# plt1.title('Companies Histogram')
+plt1.set(xlabel='Car Company', ylabel='Frequency of Company')
+
+plt.subplot(1,3,2)
+plt1 = cars.fueltype.value_counts().plot(kind='bar')
+plt1.set(xlabel = 'Fuel Type', ylabel='Frequency of fuel type')
+
+plt.subplot(1,3,3)
+plt1 = cars.carbody.value_counts().plot(kind='bar')
+plt1.set(xlabel = 'Car Type', ylabel='Frequency of Car type')
+
+# plt.show()
+
+plt.figure(figsize=(20,8))
+
+plt.subplot(1,2,1)
+plt.title('Symboling Histogram')
+sns.countplot(cars.symboling, palette=("cubehelix"))
+
+plt.subplot(1,2,2)
+plt.title('Symboling vs Price')
+sns.boxplot(x=cars.symboling, y=cars.price, palette=("cubehelix"))
+
+# plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
