@@ -80,12 +80,14 @@ sns.boxplot(x=cars.enginetype, y=cars.price, palette=("PuBuGn"))
 df = pd.DataFrame(cars.groupby(['enginetype'])['price'].mean().sort_values(ascending = False))
 df.plot.bar(figsize=(8,6))
 plt.title('Engine Type vs Average Price')
+plt.tight_layout()
 
 plt.figure(figsize=(50,50))
 
 df = pd.DataFrame(cars.groupby(['CompanyName'])['price'].mean().sort_values(ascending=False))
 df.plot.bar()
 plt.title('Company Name vs Average Price')
+plt.tight_layout()
 # plt.show()
 
 df = pd.DataFrame(cars.groupby(['fueltype'])['price'].mean().sort_values(ascending=False))
@@ -108,12 +110,36 @@ plt.subplot(1,2,2)
 plt.title('Door Number vs Price')
 sns.boxplot(x=cars.doornumber, y=cars.price, palette=("plasma"))
 
-plt.show()
+# plt.show()
 
+plt.figure(figsize=(15,5))
 
+plt.subplot(1,2,1)
+plt.title('Aspiration Histogram')
+sns.countplot(cars.aspiration, palette=("plasma"))
 
+plt.subplot(1,2,2)
+plt.title('Aspiration vs Price')
+sns.boxplot(x=cars.aspiration, y=cars.price, palette=("plasma"))
+# plt.show()
 
+def plot_count(x,fig):
+    plt.subplot(4,2,fig)
+    plt.title(x+' Histogram')
+    sns.countplot(cars[x],palette=("magma"))
+    plt.subplot(4,2,(fig+1))
+    plt.title(x+' vs price')
+    sns.boxplot(x=cars[x],y=cars.price,  palette=("magma"))
 
+plt.figure(figsize=(15,20))
+
+plot_count('enginelocation',1)
+plot_count('cylindernumber',3)
+plot_count('fuelsystem',5)
+plot_count('drivewheel',7)
+
+plt.tight_layout()
+# plt.show()
 
 
 
