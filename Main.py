@@ -156,9 +156,15 @@ scatter('carheight',3)
 scatter('curbweight',4)
 
 plt.tight_layout()
-plt.show()
+# plt.show()
 
+def pp(x,y,z):
+    sns.pairplot(cars, x_vars=[x,y,z], y_vars='price',size=4, aspect=1, kind='scatter')
+    plt.show()
 
+pp('enginesize', 'boreratio', 'stroke')
+pp('compressionratio', 'horsepower', 'peakrpm')
+pp('wheelbase', 'citympg', 'highwaympg')
 
 
 
