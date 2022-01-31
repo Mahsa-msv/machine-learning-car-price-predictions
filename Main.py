@@ -38,7 +38,7 @@ plt.subplot(1, 2, 2)
 plt.title('Car Price Spreed')
 sns.boxplot(y=cars.price)
 
-plt.show()
+# plt.show()
 
 
 plt.figure(figsize=(25, 6))
@@ -86,18 +86,35 @@ plt.figure(figsize=(50,50))
 df = pd.DataFrame(cars.groupby(['CompanyName'])['price'].mean().sort_values(ascending=False))
 df.plot.bar()
 plt.title('Company Name vs Average Price')
-plt.show()
+# plt.show()
 
 df = pd.DataFrame(cars.groupby(['fueltype'])['price'].mean().sort_values(ascending=False))
 df.plot.bar()
 plt.title('Fuel Type vs Average Price')
-plt.show()
+# plt.show()
 
 
 df = pd.DataFrame(cars.groupby(['carbody'])['price'].mean().sort_values(ascending=False))
 df.plot.bar()
 plt.title('Car Type vs Average Price')
+# plt.show()
+
+plt.figure(figsize=(15,5))
+plt.subplot(1,2,1)
+plt.title('Door Number Histogram')
+sns.countplot(cars.doornumber, palette=("plasma"))
+
+plt.subplot(1,2,2)
+plt.title('Door Number vs Price')
+sns.boxplot(x=cars.doornumber, y=cars.price, palette=("plasma"))
+
 plt.show()
+
+
+
+
+
+
 
 
 
