@@ -141,9 +141,22 @@ plot_count('drivewheel',7)
 plt.tight_layout()
 # plt.show()
 
+def scatter(x,fig):
+    plt.subplot(2,2,fig)
+    plt.scatter(cars[x],cars['price'])
+    plt.title(x + ' vs Price')
+    plt.ylabel('Price')
+    plt.xlabel(x)
 
+plt.figure(figsize=(10,20))
 
+scatter('carlength',1)
+scatter('carwidth',2)
+scatter('carheight',3)
+scatter('curbweight',4)
 
+plt.tight_layout()
+plt.show()
 
 
 
