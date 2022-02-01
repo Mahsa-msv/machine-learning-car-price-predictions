@@ -160,11 +160,48 @@ plt.tight_layout()
 
 def pp(x,y,z):
     sns.pairplot(cars, x_vars=[x,y,z], y_vars='price',size=4, aspect=1, kind='scatter')
-    plt.show()
+    # plt.show()
 
 pp('enginesize', 'boreratio', 'stroke')
 pp('compressionratio', 'horsepower', 'peakrpm')
 pp('wheelbase', 'citympg', 'highwaympg')
+
+# to check relations between car length and car width
+np.corrcoef(cars['carlength'], cars['carwidth'])[0, 1]
+
+cars['fueleconomy'] = (0.55 * cars['citympg']) + (0.45 * cars['highwaympg'])
+cars['price'] = cars['price'].astype('int')
+temp = cars.copy()
+table = temp.groupby(['CompanyName'])['price'].mean()
+temp = temp.merge(table.reset_index(), how='left',on='CompanyName')
+bins = [0,10000,20000,40000]
+cars_bin=['Budget','Medium','Highend']
+cars['carsrange'] = pd.cut(temp['price_y'],bins,right=False,labels=cars_bin)
+# print(cars.head())
+
+plt.figure(figsize=(8,6))
+
+plt.title('Fuel economy vs Price')
+sns.scatterplot(x=cars['fueleconomy'],y=cars['price'],hue=cars['drivewheel'])
+plt.xlabel('Fuel Economy')
+plt.ylabel('Price')
+
+plt.show()
+plt.tight_layout()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
