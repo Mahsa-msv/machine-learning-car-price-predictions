@@ -1,11 +1,15 @@
 import warnings
 
+import numpy.random
+
 warnings.filterwarnings('ignore')
 
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import MinMaxScaler
 
 cars = pd.read_csv('CarPrice_Assignment.csv')
 # print(cars.head())
@@ -224,10 +228,22 @@ cars_lr = dummies('carsrange',cars_lr)
 
 cars_lr.head()
 
+cars_lr.shape
 
 
+np.random.seed(0)
+df_train, df_test = train_test_split(cars_lr, train_size = 0.7, test_size = 0.3, random_state = 100)
 
+scaler = MinMaxScaler()
+num_vars = ['wheelbase', 'curbweight', 'enginesize', 'boreratio', 'horsepower','fueleconomy','carlength','carwidth','price']
+df_train[num_vars] = scaler.fit_transform(df_train[num_vars])
 
+df_train.head()
+df_train.describe()
+
+plt.figure(figsize = (30, 25))
+sns.heatmap(df_train.corr(), annot = True, cmap="YlGnBu")
+plt.show()
 
 
 
