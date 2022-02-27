@@ -243,8 +243,10 @@ df_train.describe()
 
 plt.figure(figsize = (30, 25))
 sns.heatmap(df_train.corr(), annot = True, cmap="YlGnBu")
-plt.show()
+# plt.show()
 
+y_train = df_train.pop('price')
+X_train = df_train
 
 
 
