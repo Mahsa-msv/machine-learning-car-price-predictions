@@ -328,7 +328,11 @@ y_pred = lm.predict(X_test_new)
 from sklearn.metrics import r2_score
 r2_score(y_test, y_pred)
 
-
+fig = plt.figure()
+plt.scatter(y_test,y_pred)
+fig.suptitle('y_test vs y_pred', fontsize=20)
+plt.xlabel('y_test', fontsize=18)
+plt.ylabel('y_pred', fontsize=16)
 
 
 
