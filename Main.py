@@ -307,12 +307,18 @@ X_train_new = X_train_new.drop(["dohcv"], axis = 1)
 X_train_new = build_model(X_train_new,y_train)
 checkVIF(X_train_new)
 
+lm = sm.OLS(y_train,X_train_new).fit()
+y_train_price = lm.predict(X_train_new)
 
+fig = plt.figure()
+sns.distplot((y_train - y_train_price), bins = 20)
+fig.suptitle('Error Terms', fontsize = 20)
+plt.xlabel('Errors', fontsize = 18)
 
-
-
-
-
+num_vars = ['wheelbase', 'curbweight', 'enginesize', 'boreratio', 'horsepower','fueleconomy','carlength','carwidth','price']
+df_test[num_vars] = scaler.fit_transform(df_test[num_vars])
+y_test = df_test.pop('price')
+X_test = df_test
 
 
 
