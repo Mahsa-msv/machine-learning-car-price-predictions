@@ -281,9 +281,28 @@ def checkVIF(X):
     vif = vif.sort_values(by = "VIF", ascending = False)
     return(vif)
 
+#model-1
 X_train_new = build_model(X_train_rfe,y_train)
 X_train_new = X_train_rfe.drop(["twelve"], axis = 1)
-
+#model-2
+X_train_new = build_model(X_train_new,y_train)
+X_train_new = X_train_new.drop(["fueleconomy"], axis = 1)
+#model-3
+X_train_new = build_model(X_train_new,y_train)
+checkVIF(X_train_new)
+X_train_new = X_train_new.drop(["curbweight"], axis = 1) #high VIF value
+#model-4
+X_train_new = build_model(X_train_new,y_train)
+checkVIF(X_train_new)
+X_train_new = X_train_new.drop(["sedan"], axis = 1) #high VIF value
+#model-5
+X_train_new = build_model(X_train_new,y_train)
+checkVIF(X_train_new)
+X_train_new = X_train_new.drop(["wagon"], axis = 1) #high p-value
+#model-6
+X_train_new = build_model(X_train_new,y_train)
+checkVIF(X_train_new)
+#model-7
 
 
 
