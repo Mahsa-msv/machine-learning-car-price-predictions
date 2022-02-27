@@ -303,7 +303,9 @@ X_train_new = X_train_new.drop(["wagon"], axis = 1) #high p-value
 X_train_new = build_model(X_train_new,y_train)
 checkVIF(X_train_new)
 #model-7
-
+X_train_new = X_train_new.drop(["dohcv"], axis = 1)
+X_train_new = build_model(X_train_new,y_train)
+checkVIF(X_train_new)
 
 
 
