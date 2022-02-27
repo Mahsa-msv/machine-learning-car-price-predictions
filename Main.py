@@ -320,7 +320,9 @@ df_test[num_vars] = scaler.fit_transform(df_test[num_vars])
 y_test = df_test.pop('price')
 X_test = df_test
 
-
-
+X_train_new = X_train_new.drop('const',axis=1)
+X_test_new = X_test[X_train_new.columns]
+X_test_new = sm.add_constant(X_test_new)
+y_pred = lm.predict(X_test_new)
 
 
