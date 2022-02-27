@@ -325,4 +325,21 @@ X_test_new = X_test[X_train_new.columns]
 X_test_new = sm.add_constant(X_test_new)
 y_pred = lm.predict(X_test_new)
 
+from sklearn.metrics import r2_score
+r2_score(y_test, y_pred)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
